@@ -1,29 +1,32 @@
 <template>
-    <el-row class="tac">
+    <el-row>
       <el-col :span="20">
-        <router-link class="all" to="/books/all">
-          全部作品
-        </router-link>
-        <el-menu>
+        <el-menu default-active="1">
           <el-menu-item index="1">
+            <router-link to="/books/all">
+              <i class="el-icon-notebook-1"></i>
+              <span>全部作品</span>
+            </router-link>
+          </el-menu-item>
+          <el-menu-item index="2">
             <router-link to="/books/xuanhuanxiaoshuo">
               <i class="el-icon-notebook-1"></i>
               <span>奇幻玄幻</span>
             </router-link>
           </el-menu-item>
-          <el-menu-item index="2">
+          <el-menu-item index="3">
             <router-link to="/books/wuxiaxiaoshuo">
               <i class="el-icon-notebook-2"></i>
               <span>武侠仙侠</span>
             </router-link>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="4">
             <router-link to="/books/lishixiaoshuo">
               <i class="el-icon-notebook-2"></i>
               <span>历史军事</span>
             </router-link>
           </el-menu-item>
-          <el-menu-item index="4">
+          <el-menu-item index="5">
             <router-link to="/books/doushixiaoshuo">
               <i class="el-icon-notebook-2"></i>
               <span>都市娱乐</span>

@@ -40,7 +40,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
   .header{
-    padding: 30px 0 50px;
+    padding: 30px 0 30px;
     .logo{
       width: 167px;
       height: 32px;

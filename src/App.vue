@@ -5,7 +5,7 @@
         <MyHeader />
       </el-header>
       <el-container>
-        <el-aside style="width: 200px;overflow: hidden">
+        <el-aside style="margin-top: 20px;width: 200px;overflow: hidden;">
           <LeftMenu/>
         </el-aside>
         <el-main>
@@ -29,7 +29,7 @@ export default {
 </script>
 <style>
   #app{
-    max-width: 1200px;
+    width: 1200px;
     margin: 0 auto;
     font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   }
