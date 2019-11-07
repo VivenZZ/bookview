@@ -1,32 +1,39 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <el-container>
+      <el-header style="height: 100px">
+        <MyHeader />
+      </el-header>
+      <el-container>
+        <el-aside style="width: 200px;overflow: hidden">
+          <LeftMenu/>
+        </el-aside>
+        <el-main>
+          <router-view/>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import MyHeader from './components/MyHeader.vue'
+import LeftMenu from './components/LeftMenu'
+export default {
+  name: 'app',
+  components: {
+    MyHeader,
+    LeftMenu
   }
 }
+</script>
+<style>
+  #app{
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  }
+  ul,li{
+    list-style: none;
+  }
 </style>
