@@ -9,21 +9,19 @@
       <el-col class="book-details">
         <el-col :span="22">
           <span class="book-name">{{name}}</span>
-          <span class="book-type">玄幻奇幻</span>
-          <span class="book-status">连载中</span>
-          <span class="book-word-number">字数：<i>12.3万</i></span>
-          <span class="book-recommend">总推荐：<i>12.3万</i></span>
+          <span class="book-type">{{novelclass}}</span>
+          <span class="book-status">{{status}}</span>
+          <span class="book-word-number">字数：<i>{{numbers}}</i></span>
+          <span class="book-recommend">总推荐：<i>{{hot}}</i></span>
         </el-col>
         <el-col :span="2" class="big-number">
           <span :class="index < 3 ? 'active': ''">{{index + 1}}</span>
         </el-col>
       </el-col>
-      <el-col class="book-details-text">
-        一道寂灭恒河的枷锁，一滴乱世封天的真血。在万古前挣脱，于混沌中破灭。 红尘的因果颤动了苍茫的锁链，史前的邪族唤醒了域外的冥舟。 弹指间，神魔泣血，乱天动地，诸圣争霸，乾坤碎灭。 万族兴起，天外天临。仙域永夜，古境崩塌。 仙古之道，谁主沉浮？
-      </el-col>
+      <el-col class="book-details-text">{{description}}</el-col>
       <el-col>
         <el-col :span="12">
-          <a href="" class="new-chapter">最新章节: <i>我是一个小程序员</i></a>
+          <a href="" class="new-chapter">最新章节: <i>{{newChapter}}</i></a>
         </el-col>
         <el-col :span="12">
           <span class="read-now">立即阅读</span>
@@ -38,8 +36,14 @@
 export default {
   name: 'BookInfo',
   props: [
+    'newChapter',
+    'hot',
+    'status',
+    'novelclass',
+    'description',
     'imgsrc',
     'name',
+    'numbers',
     'index'
   ]
 }
@@ -95,7 +99,7 @@ span{
 }
 }
 img{
-  max-width: 100%;
+  width: 100%;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 a{

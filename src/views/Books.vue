@@ -6,7 +6,7 @@
       <el-tab-pane label="完本" name="third"></el-tab-pane>
     </el-tabs>
     <el-col  class="listbox" :span="24" v-for="(book, index) in books" :key="book.index">
-      <BookInfo :imgsrc="book.imgsrc" :name="book.name" :index="index" />
+      <BookInfo :numbers="book.numbers" :newChapter="book.newChapter" :hot="book.hot" :status="book.status" :novelclass="book.novelclass" :description="book.description" :imgsrc="'http://localhost:3000' + book.imgPath" :name="book.name" :index="index" />
     </el-col>
     <el-col>
       <div class="block">
@@ -61,6 +61,11 @@ export default {
     handleClick (tab, event) {
       console.log(tab, event)
     }
+  },
+  created () {
+    this.$axios.get('http://localhost:3000/api/books').then(res => {
+      this.books = res.data.books
+    })
   },
   computed: {
     title: function () {
