@@ -8,16 +8,14 @@
     <el-col  class="listbox" :span="24" v-for="(book, index) in books" :key="book.index">
       <BookInfo :imgsrc="book.imgsrc" :name="book.name" :index="index" />
     </el-col>
-    <el-col>
-      <div class="block">
-        <span class="demonstration"> </span>
-        <el-pagination class="solt"
-                       background
-                       layout="prev, pager, next"
-                       :total="1000">
-        </el-pagination>
-      </div>
-    </el-col>
+    <div class="block">
+      <span class="demonstration"> </span>
+      <el-pagination class="solt"
+        background
+        layout="prev, pager, next"
+        :total="1000">
+      </el-pagination>
+    </div>
   </el-row>
 </template>
 <script>
@@ -95,8 +93,5 @@ export default {
     padding: 15px 10px;
     margin-bottom: 10px;
     border-radius: 5px;
-  }
-  .block{
-    float: right;
   }
 </style>

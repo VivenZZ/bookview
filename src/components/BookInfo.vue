@@ -131,7 +131,7 @@ i{
   border: 1px solid #edacac;
   border-radius: 2px;
   letter-spacing: 1px;
-  width: 220px;
+  width: 120px;
   margin-right: 7px;
   text-align: center;
   cursor: pointer;
