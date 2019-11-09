@@ -9,25 +9,25 @@
             </router-link>
           </el-menu-item>
           <el-menu-item index="2">
-            <router-link to="/books/xuanhuanxiaoshuo">
+            <router-link to="/books/xuanhuan">
               <i class="el-icon-notebook-1"></i>
               <span>奇幻玄幻</span>
             </router-link>
           </el-menu-item>
           <el-menu-item index="3">
-            <router-link to="/books/wuxiaxiaoshuo">
+            <router-link to="/books/xianxia">
               <i class="el-icon-notebook-2"></i>
               <span>武侠仙侠</span>
             </router-link>
           </el-menu-item>
           <el-menu-item index="4">
-            <router-link to="/books/lishixiaoshuo">
+            <router-link to="/books/lishi">
               <i class="el-icon-notebook-2"></i>
               <span>历史军事</span>
             </router-link>
           </el-menu-item>
           <el-menu-item index="5">
-            <router-link to="/books/doushixiaoshuo">
+            <router-link to="/books/dushi">
               <i class="el-icon-notebook-2"></i>
               <span>都市娱乐</span>
             </router-link>

@@ -6,15 +6,17 @@
       <el-tab-pane label="完本" name="third"></el-tab-pane>
     </el-tabs>
     <el-col  class="listbox" :span="24" v-for="(book, index) in books" :key="book.index">
-      <BookInfo :numbers="book.numbers" :newChapter="book.newChapter" :hot="book.hot" :status="book.status" :novelclass="book.novelclass" :description="book.description" :imgsrc="'http://localhost:3000' + book.imgPath" :name="book.name" :index="index" />
+      <BookInfo :numbers="book.numbers" :newChapter="book.newChapter" :hot="book.hot" :status="book.status" :novelclass="book.novelclass" :description="book.description" :imgsrc="'http://localhost:3000' + book.imgPath" :name="book.name" :index="index + indexNumber" />
     </el-col>
     <el-col>
       <div class="block">
         <span class="demonstration"> </span>
         <el-pagination class="solt"
                        background
+                       :page-size="5"
+                       @current-change="handleCurrentChange"
                        layout="prev, pager, next"
-                       :total="1000">
+                       :total="count">
         </el-pagination>
       </div>
     </el-col>
@@ -28,60 +30,58 @@ export default {
   data () {
     return {
       activeName: 'first',
-      books: [
-        {
-          name: '寻龙迷踪',
-          age: 23,
-          imgsrc: 'http://static.zongheng.com/upload/cover/0c/7b/0c7bb5a316809da6e13118cbf7dbd35a.jpeg'
-        },
-        {
-          name: '一剑朝天',
-          age: 26,
-          imgsrc: 'http://static.zongheng.com/upload/cover/2e/b2/2eb2c0dbc41553435c21c4ae7b6e611b.jpeg'
-        },
-        {
-          name: '煞气横秋 ',
-          age: 26,
-          imgsrc: 'http://static.zongheng.com/upload/cover/b1/b7/b1b7fe8c4d03df6f2e2cadb21b344030.jpeg'
-        },
-        {
-          name: '一剑朝天',
-          age: 26,
-          imgsrc: 'http://static.zongheng.com/upload/cover/2e/b2/2eb2c0dbc41553435c21c4ae7b6e611b.jpeg'
-        },
-        {
-          name: '煞气横秋 ',
-          age: 26,
-          imgsrc: 'http://static.zongheng.com/upload/cover/b1/b7/b1b7fe8c4d03df6f2e2cadb21b344030.jpeg'
-        }
-      ]
+      books: [],
+      indexNumber: 0,
+      count: 0,
+      status: 0
     }
   },
   methods: {
     handleClick (tab, event) {
-      console.log(tab, event)
+      switch (tab.label) {
+        case '全部':
+          this.status = 0
+          break
+        case '连载中':
+          this.status = 1
+          break
+        case '完本':
+          this.status = 2
+          break
+      }
+      this.handleCurrentChange(1)
+    },
+    handleCurrentChange (val) {
+      this.indexNumber = (val - 1) * 5
+      this.$axios.get(`http://localhost:3000/api/books?pageNumber=${val}&classId=${this.classId}&status=${this.status}`).then(res => {
+        this.books = res.data.books
+        this.toTop(50)
+      })
+    },
+    toTop (i) { // 返回顶部
+      document.documentElement.scrollTop -= i
+      if (document.documentElement.scrollTop > 0) {
+        var c = setTimeout(() => this.toTop(i), 16)
+      } else {
+        clearTimeout(c)
+      }
     }
   },
   created () {
-    this.$axios.get('http://localhost:3000/api/books').then(res => {
+    this.$axios.get('http://localhost:3000/api/books?pageNumber=1').then(res => {
       this.books = res.data.books
+      this.count = res.data.count
     })
   },
+  watch: {
+    '$route' (to, from) {
+      // 对路由变化作出响应...
+      this.handleCurrentChange(1)
+    }
+  },
   computed: {
-    title: function () {
-      let classId = this.$route.params.classId
-      let title = ''
-      switch (classId) {
-        case 'all':
-          title = '全部作品'
-          break
-        case 'xuanhuanxiaoshuo':
-          title = '玄幻小说'
-          break
-        default:
-          title = '正在测试'
-      }
-      return title
+    classId: function () {
+      return this.$route.params.classId
     }
   }
 }
