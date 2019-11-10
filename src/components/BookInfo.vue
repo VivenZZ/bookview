@@ -1,21 +1,21 @@
 <template>
   <div id="book-info">
     <el-col :span="4">
-      <router-link to="/books/book/123456">
+      <router-link :to="`/books/book/${bookid}`">
         <img :src="imgsrc" alt="">
       </router-link>
     </el-col>
     <el-col :span="20">
       <el-col class="book-details">
         <el-col :span="22">
-          <span class="book-name">{{name}}</span>
+          <router-link :to="`/books/book/${bookid}`" class="book-name">{{name}}</router-link>
           <span class="book-type">{{novelclass}}</span>
           <span class="book-status">{{status}}</span>
           <span class="book-word-number">字数：<i>{{numbers}}</i></span>
           <span class="book-recommend">总推荐：<i>{{hot}}</i></span>
         </el-col>
         <el-col :span="2" class="big-number">
-          <span :class="index < 3 ? 'active': ''">{{index + 1}}</span>
+          <span v-if="index != -1" :class="index < 3 ? 'active': ''">{{index + 1}}</span>
         </el-col>
       </el-col>
       <el-col class="book-details-text">{{description}}</el-col>
@@ -24,7 +24,7 @@
           <a href="" class="new-chapter">最新章节: <i>{{newChapter}}</i></a>
         </el-col>
         <el-col :span="12">
-          <span class="read-now">立即阅读</span>
+          <router-link :to="`/books/book/${bookid}`" class="read-now">立即阅读</router-link>
           <span class="join-cart">加入书架</span>
         </el-col>
       </el-col>
@@ -36,6 +36,7 @@
 export default {
   name: 'BookInfo',
   props: [
+    'bookid',
     'newChapter',
     'hot',
     'status',
