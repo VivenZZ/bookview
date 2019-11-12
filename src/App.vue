@@ -28,6 +28,8 @@ export default {
 }
 </script>
 <style>
+  body{
+  }
   #app{
     width: 1200px;
     margin: 0 auto;

@@ -3,7 +3,7 @@
     <BookInfo :numbers="bookDetails.numbers" :newChapter="bookDetails.newChapter" :hot="bookDetails.hot" :status="bookDetails.status" :novelclass="bookDetails.novelclass" :description="bookDetails.description" :imgsrc="'http://localhost:3000' + bookDetails.imgPath" :name="bookDetails.name" :index="-1" />
     <el-col class="chapter-list">
       <el-col class="chapter-list_item" :span="6" v-for="chap in chapter" :key="chap._id">
-        <router-link :to="`/book/${chap.bookId}/${chap._id}`">{{chap.title}}</router-link>
+        <router-link :to="`./${chap.bookId}/${chap._id}`">{{chap.title}}</router-link>
       </el-col>
     </el-col>
   </el-row>
